@@ -35,4 +35,4 @@ A Python-based Security Information and Event Management (SIEM) tool that parses
 ![Mini SIEM Dashboard](screenshot.png)
 
 ## 👨‍💻 Author
-Nirmal Sanjyal — Cybersecurity Student | ISMT College, Kathmandu
+Nirmal Sanjyal — Cybersecurity Student | University of Sunderland |ISMT College, Kathmandu
