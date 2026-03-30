@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini SIEM Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #0f0f0f; color: #e0e0e0; padding: 20px; }
+        h1 { color: #00ff99; }
+        h2 { color: #ff4444; }
+        h3 { color: #00aaff; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        th { background: #1a1a2e; color: #00ff99; padding: 10px; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #333; }
+        tr:hover { background: #1a1a1a; }
+        .HIGH { color: #ff4444; font-weight: bold; }
+        .MEDIUM { color: #ffaa00; font-weight: bold; }
+        .alert-box { background: #1a0000; border: 1px solid #ff4444; padding: 15px; margin-bottom: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🛡️ Mini SIEM Dashboard</h1>
+
+    <h2>🚨 Alerts</h2>
+    {% if alerts %}
+        {% for a in alerts %}
+        <div class="alert-box">
+            <span class="{{ a['severity'] }}">[{{ a['severity'] }}]</span>
+            Brute Force detected from IP: <strong>{{ a['ip'] }}</strong> — {{ a['count'] }} failed attempts
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No alerts detected.</p>
+    {% endif %}
+
+    <h3>📋 All Events</h3>
+    <table>
+        <tr>
+            <th>ID</th><th>Time</th><th>Event</th><th>User</th><th>IP</th>
+        </tr>
+        {% for e in events %}
+        <tr>
+            <td>{{ e['id'] }}</td>
+            <td>{{ e['time'] }}</td>
+            <td>{{ e['event'] }}</td>
+            <td>{{ e['user'] }}</td>
+            <td>{{ e['ip'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
